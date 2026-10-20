@@ -1,5 +1,26 @@
 
 # expenses.py
+
+import json
+from pathlib import Path
+
+DATA_FILE = Path(__file__).with_name("expenses.json")
+
+
+def load_expenses():
+    """Load expenses from a local JSON file."""
+    if not DATA_FILE.exists():
+        return []
+
+    with DATA_FILE.open("r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def save_expenses(expenses):
+    """Save expenses to a local JSON file."""
+    with DATA_FILE.open("w", encoding="utf-8") as file:
+        json.dump(expenses, file, indent=4)
+
 """Expense management functions for the group expense tracker."""
 
 
