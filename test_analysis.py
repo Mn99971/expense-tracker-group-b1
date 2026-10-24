@@ -29,3 +29,14 @@ def test_invalid_amount_raises_value_error():
     bad = [{"id": 1, "amount": "abc", "category": "Food", "description": "x"}]
     with pytest.raises(ValueError):
         calculate_total(bad)
+
+def test_numeric_string_amount_is_rejected():
+    bad = [{"id": 1, "amount": "50", "category": "Food", "description": "x"}]
+    with pytest.raises(ValueError):
+        calculate_total(bad)
+
+
+def test_nan_amount_is_rejected():
+    bad = [{"id": 1, "amount": float("nan"), "category": "Food", "description": "x"}]
+    with pytest.raises(ValueError):
+        calculate_total(bad)

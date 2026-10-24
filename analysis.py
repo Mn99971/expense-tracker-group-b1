@@ -1,12 +1,19 @@
+import math
+
+
 def _amount(expense):
-    """Return the amount of an expense as a float, or raise ValueError."""
+    """Return the amount of an expense, or raise ValueError."""
     try:
-        value = float(expense["amount"])
-    except (KeyError, TypeError, ValueError):
+        value = expense["amount"]
+    except (KeyError, TypeError):
         raise ValueError("Invalid expense amount")
+    if not isinstance(value, (int, float)) or isinstance(value, bool):
+        raise ValueError("Amount must be numeric")
+    if math.isnan(value) or math.isinf(value):
+        raise ValueError("Amount must be a finite number")
     if value < 0:
         raise ValueError("Amount cannot be negative")
-    return value
+    return float(value)
 
 
 def calculate_total(expenses):
