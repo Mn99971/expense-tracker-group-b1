@@ -1,8 +1,10 @@
+import math
+
 def set_budget(amount):
     if isinstance(amount, bool) or not isinstance(amount, (int, float)):
         raise ValueError("Budget must be a number")
-    if amount <= 0:
-        raise ValueError("Budget must be a positive number")
+    if not math.isfinite(amount) or amount <= 0:
+        raise ValueError("Budget must be a positive finite number")
     return amount
 
 
