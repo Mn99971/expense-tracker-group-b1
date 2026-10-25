@@ -21,6 +21,20 @@ def test_edit_expense():
     assert expenses[0]["amount"] == 75
     assert expenses[0]["description"] == "Dinner"
 
+def test_add_expense_rejects_duplicate_id():
+    expenses = [
+        {
+            "id": 1,
+            "amount": 20.0,
+            "category": "Food",
+            "description": "Lunch"
+        }
+    ]
+
+    with pytest.raises(ValueError):
+        add_expense(expenses, 1, 30.0, "Transport", "Bus")
+
+    assert len(expenses) == 1
 
 def test_delete_nonexistent_expense():
     expenses = []

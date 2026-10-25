@@ -45,6 +45,8 @@ def add_expense(expenses, expense_id, amount, category, description):
         "category": category,
         "description": description,
     }
+    if any(expense["id"] == expense_id for expense in expenses):
+        raise ValueError("An expense with this ID already exists")
     expenses.append(expense)
     return expenses
 
