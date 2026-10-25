@@ -20,3 +20,7 @@ def test_is_over_budget():
     expenses = [{"amount": 80}]
     assert is_over_budget(50, expenses) is True
     assert is_over_budget(100, expenses) is False
+
+def test_nan_budget_rejected():
+    with pytest.raises(ValueError):
+        set_budget(float("nan"))
