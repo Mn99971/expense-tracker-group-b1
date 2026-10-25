@@ -3,4 +3,4 @@
 Group B1 Project
 
 ## Project Status
-Project setup complete.
+Budget Management module and GitHub Pages added by Razane.
